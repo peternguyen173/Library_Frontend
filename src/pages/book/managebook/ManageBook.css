@@ -1,0 +1,82 @@
+.books-list {
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.table-header1, .table-row1 {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1fr 0.5fr 0.5fr 0.5fr; /* Adjusted to 8 columns */
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-header1 {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 2px solid #ddd; /* Optional: Thicker bottom border for the header */
+}
+
+.table-row1 {
+    background-color: #fff;
+    transition: background-color 0.3s;
+    border-bottom: 1px solid #ddd; /* Optional: Bottom border for each row */
+}
+
+.table-row1:hover {
+    background-color: #f9f9f9;
+}
+
+.table-row1 div {
+    padding: 10px;
+}
+
+.table-header1 div {
+    padding: 10px;
+    border-right: 1px solid #ddd; /* Vertical lines between columns */
+}
+
+.table-row1 div:last-child, .table-header1 div:last-child {
+    border-right: none; /* Remove the border from the last column */
+}
+
+.action-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #888;
+}
+
+.edit-btn:hover {
+    color: #4CAF50;
+}
+
+.delete-btn:hover {
+    color: #f44336;
+}
+
+.pagination {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #ddd;
+}
