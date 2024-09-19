@@ -23,6 +23,7 @@ Mở terminal (hoặc command prompt) và chuyển vào thư mục mà bạn v�
 
 Bước 4: Cài đặt các phụ thuộc
 Chạy lệnh npm install để cài đặt các phụ thuộc cần thiết cho dự án:
+Không cần file .env
 
 Bước 5: Chạy ứng dụng
 Sau khi hoàn tất cài đặt, bạn có thể chạy ứng dụng bằng lệnh:
