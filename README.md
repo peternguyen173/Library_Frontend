@@ -1,7 +1,8 @@
 Tổng quan: Đây là phần Frontend của ứng dụng quản lý thư viện Library, viết bằng ReactJS
 
-tài khoản Admin: dinhtuandungnguyen@gmail.com
-tài khoản User demo: dinhtuandungnguyen311@gmail.com
+tài khoản Admin: dinhtuandungnguyen@gmail.com, password: password123
+
+tài khoản User demo: dinhtuandungnguyen311@gmail.com, password: password123
 
 ##Trước khi chạy Frontend hãy đảm bảo đã chạy được Backend
 
