@@ -9,6 +9,7 @@ Bước 1: Cài đặt Node.js
 Trước khi bắt đầu, hãy chắc chắn rằng bạn đã cài đặt các phần mềm sau:
 
 Node.js (phiên bản 16 trở lên): Tải Node.js từ trang chính thức của Node.js.
+
 Bước 2: Tải mã nguồn từ GitHub
 Truy cập vào repository trên GitHub: Mở trình duyệt và đi đến trang GitHub của dự án.
 Tải về mã nguồn:
