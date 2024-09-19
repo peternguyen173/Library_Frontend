@@ -15,26 +15,21 @@ const DashBoard = () => {
     const [isSearchPerformed, setIsSearchPerformed] = useState(false);
 
     useEffect(() => {
-        if (isSearchPerformed) {
-            fetchBooks(currentPage, pageSize, searchType, searchQuery);
-        } else {
-            fetchBooks(currentPage, pageSize);
-        }
-    }, [currentPage, pageSize, isSearchPerformed]);
+        fetchBooks(currentPage, pageSize, searchType, searchQuery);
+    }, [currentPage, pageSize]);
+
 
     const fetchBooks = async (page, size, type, query) => {
         setLoading(true);
         setError(null);
         try {
             let response;
-            if (isSearchPerformed && type && query) {
-                if (type === 'thể loại') {
-                    response = await searchBooksByCategory(query, page, size);
-                } else if (type === 'tác giả') {
-                    response = await searchBooksByAuthor(query, page, size);
-                } else if (type === 'tên sách') {
-                    response = await searchBooksByTitle(query, page, size);
-                }
+            if (type === 'thể loại') {
+                response = await searchBooksByCategory(query);
+            } else if (type === 'tác giả') {
+                response = await searchBooksByAuthor(query);
+            } else if (type === 'tên sách') {
+                response = await searchBooksByTitle(query);
             } else {
                 response = await getAllBooks(page, size);
             }
@@ -67,9 +62,9 @@ const DashBoard = () => {
         setIsSearchPerformed(true);
         setError(null);
         fetchBooks(0, pageSize, searchType, searchQuery);
+
     };
 
-    // Function to handle Enter key press
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             handleSearch();
@@ -81,31 +76,28 @@ const DashBoard = () => {
             <div className="search-bar">
                 <h2>Tìm kiếm sách</h2>
 
-                Tìm kiếm theo
-                <select
-                    className="alo"
-                    value={searchType}
-                    onChange={(e) => setSearchType(e.target.value)}
-                >
-                    <option value="tên sách">tên sách</option>
-                    <option value="tác giả">tác giả</option>
-                    <option value="thể loại">thể loại</option>
-                </select>
-                :
-                <input
-                    className="input2"
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyDown={handleKeyDown} // Add this line to handle Enter key
-                    placeholder={`Nhập ${searchType}`}
+                Tìm kiếm theo <select className="alo"
+                                      value={searchType}
+                                      onChange={(e) => setSearchType(e.target.value)}
+            >
+                <option value="tên sách">tên sách</option>
+                <option value="tác giả">tác giả</option>
+                <option value="thể loại">thể loại</option>
+            </select> chứa:
+                <input className="input2"
+                       type="text"
+                       onKeyDown={handleKeyDown} //
+                       value={searchQuery}
+                       onChange={(e) => setSearchQuery(e.target.value)}
+                       placeholder={`Nhập ${searchType}`}
                 />
-                <button onClick={handleSearch}>Search</button>
+                <button onClick={handleSearch}>Tìm kiếm</button>
             </div>
+
 
             {error && <div style={{color: 'red'}}>{error}</div>}
             {loading && <div>Đang tải...</div>}
-            <br />
+            <br/>
             <h2>{isSearchPerformed ? 'Kết quả tìm kiếm' : 'Danh sách sách hiện có'}</h2>
 
             <div className="books-list">
@@ -139,8 +131,8 @@ const DashBoard = () => {
                 )}
                 <div className="pagination">
                     <span>{`Trang số ${currentPage + 1} / ${totalPages}`}</span>
-                    <button onClick={handlePrevPage} disabled={currentPage === 0}>Previous</button>
-                    <button onClick={handleNextPage} disabled={currentPage >= totalPages - 1}>Next</button>
+                    <button onClick={handlePrevPage} disabled={currentPage === 0}>Trước</button>
+                    <button onClick={handleNextPage} disabled={currentPage >= totalPages - 1}>Tiếp</button>
                 </div>
             </div>
         </div>

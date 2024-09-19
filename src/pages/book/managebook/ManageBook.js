@@ -8,14 +8,14 @@ import {
     searchBooksByTitle,
     deleteBookById,
     deleteBook
-} from "../../../api/book"; // Assuming you have this function
+} from "../../../api/book";
 
 const ManageBook = () => {
     const [books, setBooks] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [pageSize, setPageSize] = useState(10);
     const [totalPages, setTotalPages] = useState(0);
-    const [searchType, setSearchType] = useState('title');
+    const [searchType, setSearchType] = useState('tên sách');
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -30,11 +30,11 @@ const ManageBook = () => {
         setError(null);
         try {
             let response;
-            if (type === 'category') {
+            if (type === 'thể loại') {
                 response = await searchBooksByCategory(query);
-            } else if (type === 'author') {
+            } else if (type === 'tác giả') {
                 response = await searchBooksByAuthor(query);
-            } else if (type === 'title') {
+            } else if (type === 'tên sách') {
                 response = await searchBooksByTitle(query);
             } else {
                 response = await getAllBooks(page, size);
@@ -50,13 +50,18 @@ const ManageBook = () => {
             setLoading(false);
         }
     };
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
 
     const handleDelete = async (bookId, name, author) => {
         const isConfirmed = window.confirm(`Bạn có chắc chắn muốn xóa sách: ${name}, tác giả: ${author}?`);
         if (isConfirmed) {
             try {
-                await deleteBook(bookId); // Assuming you have a deleteBookById function in your API
-                setBooks(books.filter(book => book.id !== bookId)); // Remove the deleted book from the UI
+                await deleteBook(bookId);
+                setBooks(books.filter(book => book.id !== bookId));
                 alert("Xóa sách thành công!");
             } catch (error) {
                 console.error("Failed to delete book", error);
@@ -78,10 +83,7 @@ const ManageBook = () => {
     };
 
     const handleSearch = () => {
-        if (!searchQuery.trim()) {
-            setError('Vui lòng nhập thông tin sách cần tìm kiếm!');
-            return;
-        }
+
 
         setCurrentPage(0);
         setIsSearchPerformed(true);
@@ -101,19 +103,21 @@ const ManageBook = () => {
                 <option value="tên sách">tên sách</option>
                 <option value="tác giả">tác giả</option>
                 <option value="thể loại">thể loại</option>
-            </select>:
+            </select> chứa:
                 <input className="input2"
                        type="text"
                        value={searchQuery}
+                       onKeyDown={handleKeyDown} //
                        onChange={(e) => setSearchQuery(e.target.value)}
                        placeholder={`Nhập ${searchType}`}
                 />
-                <button onClick={handleSearch}>Search</button>
+                <button onClick={handleSearch}>Tìm kiếm</button>
             </div>
+
 
             {error && <div style={{color: 'red'}}>{error}</div>}
             {loading && <div>Đang tải...</div>}
-
+<br/>
             <h2>{isSearchPerformed ? 'Kết quả tìm kiếm' : 'Danh sách sách hiện có'}</h2>
 
             <div className="books-list">
@@ -161,9 +165,9 @@ const ManageBook = () => {
                     ))
                 )}
                 <div className="pagination">
-                    <span>{`Showing ${currentPage * pageSize + 1} to ${Math.min((currentPage + 1) * pageSize, books.length)} of ${books.length}`}</span>
-                    <button onClick={handlePrevPage} disabled={currentPage === 0}>Previous</button>
-                    <button onClick={handleNextPage} disabled={currentPage >= totalPages - 1}>Next</button>
+                    <span>{`Trang số ${currentPage + 1} / ${totalPages}`}</span>
+                    <button onClick={handlePrevPage} disabled={currentPage === 0}>Trước</button>
+                    <button onClick={handleNextPage} disabled={currentPage >= totalPages - 1}>Tiếp</button>
                 </div>
             </div>
         </div>

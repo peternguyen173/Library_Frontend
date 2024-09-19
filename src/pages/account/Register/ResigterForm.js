@@ -116,7 +116,7 @@ function RegisterForm() {
                 const response = await signUp({ email, password, name, phoneNumber });
 
                 // Show success toast and redirect
-                toast.success("Đăng ký thành công!", {
+                toast.success("Email xác thực đã được gửi!", {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -137,7 +137,7 @@ function RegisterForm() {
 
                 // Redirect to home page after a short delay
                 setTimeout(() => {
-                    navigate('/');
+                    navigate('/verify-email');
                 }, 3000);
 
             } catch (error) {
