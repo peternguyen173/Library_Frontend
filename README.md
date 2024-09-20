@@ -9,7 +9,7 @@ tài khoản User demo: dinhtuandungnguyen311@gmail.com, password: password123
 Bước 1: Cài đặt Node.js
 Trước khi bắt đầu, hãy chắc chắn rằng bạn đã cài đặt các phần mềm sau:
 
-Node.js (phiên bản 20.17.0(LTS)): Tải Node.js từ trang chính thức của Node.js.
+Node.js (phiên bản 20.17.0(LTS)): Tải Node.js phiên bản 20.17.0(LTS) từ trang chính thức của Node.js:https://nodejs.org/en.
 
 Bước 2: Tải mã nguồn từ GitHub
 Truy cập vào repository trên GitHub: Mở trình duyệt và đi đến trang GitHub của dự án.
